@@ -464,17 +464,19 @@ select * from employees where last_name like 'K%' order by last_name asc;
 
 /*9. Display name of the employees whose hire dates are between 1995 and 1997.*/
 select first_name,last_name,hire_date from employees where hire_date between '1995-01-01' and '1997-12-31' order by hire_date asc;
-
+select first_name,last_name,hire_date from employees where hire_date between 1995 and 1997;
 
 /*10. Write a query to display jobs where the maximum salary is less than 5000.*/
 select job_title from jobs where max_salary<5000;
 
 /*11. Write a query to display email address in lower case.*/
-select email from employees;
+select upper(email) from employees;
 
 
 /*12. Write a query to display name of the employees who were hired in 1995.*/
 select first_name,last_name from employees where hire_date like '1995%';
+select first_name,last_name from employees where hire_date = 1995;
+select first_name,hire_date from employees where hire_date like '%-01';
 
 /*13. Write a query to insert an employee “Paul Newton” in department 11.*/
 INSERT INTO
@@ -485,11 +487,16 @@ employees(employee_id,first_name,last_name,email,phone_number,hire_date,job_id,s
 select * from employees where last_name='Newton';
 
 /*14. Write a query to delete the shipping department.*/
-delete from departments where department_name='Shipping';
+/*delete from departments where department_name='Shipping';
 
 alter table departments modify department_name varchar(30);
 desc departments;
 
 select * from departments where department_name='Shipping';
+*/
+
+set foreign_key_checks=0;
+delete department_id from departments where department_name='Shipping';
+set foreign_key_checks=1;
 
 
